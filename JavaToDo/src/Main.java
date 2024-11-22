@@ -9,10 +9,8 @@ public class Main {
 		System.out.println("-------------------------------------------------------------------------------------");
 		TaskManager taskManager = new TaskManager();
 		Scanner scanner = new Scanner(System.in);
-	
-	while(true) {
-		try {
-			
+	try {
+		while(true) {
 			System.out.println("Please, make your Choose : ");
 			System.out.println("to List Tasks : 1 ");
 			System.out.println("to Add new Task : 2 ");
@@ -20,16 +18,19 @@ public class Main {
 			System.out.println("to Complete a Task : 4 ");
 			int choice = scanner.nextInt();
 			
+			taskManager.refreshId();
+			
 			switch (choice) {
 			case 1: {
 				taskManager.listTasks();
+				scanner.next();
 				break;
 			}
 			case 2:{
 				System.out.println("Please Enter your task: ");
-				scanner.nextLine(); // Boşta kalan satırı temizle
+				scanner.nextLine();
 				String taskText = scanner.nextLine();
-				Task newTask = new Task(taskManager.getSize(), taskText);
+				Task newTask = new Task(taskText);
 				taskManager.addTask(newTask);
 				break;
 			}
@@ -51,10 +52,14 @@ public class Main {
 			default:
 				throw new IllegalArgumentException("Unexpected value: ");
 			}
-			
-		} catch (Exception e) {
-			System.out.println("An unexpected error occurred");
-		}
+	} 
+	
+		
+	}
+	catch (Exception e) {
+		System.out.println("An unexpected error occurred");
+	}finally {
+	    scanner.close();
 	}
 	
 	}

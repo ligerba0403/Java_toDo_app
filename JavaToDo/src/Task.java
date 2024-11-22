@@ -5,9 +5,8 @@ public class Task {
 	private boolean isCompleted;
 	
 	
-	public Task(int id, String task) {
+	public Task(String task) {
 		super();
-		this.id = id;
 		this.task = task;
 		this.isCompleted = false;
 		
